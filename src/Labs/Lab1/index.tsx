@@ -262,7 +262,7 @@ tag to tell browsers to render the gaps.
       to get dummy text<br/>
 
       Please
-      <a href=""> go to Github repo </a>
+      <a href="https://github.com/cliffdawg/kanbas-react-web-app"> go to Github repo </a>
       <br/>
 
     </div>
