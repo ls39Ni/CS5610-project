@@ -1,0 +1,27 @@
+div#wd-kanbas-navigation{	
+	div#wd-kanbas-navigation {
+	 width: 110px;
+	}
+
+	div#FaRegCircleUser {
+	 text: white;
+	}
+
+	div#FaRegCircleUser:focus {
+	 text: red;
+	}
+
+	.list-group-item .fs-1 {
+	 margin: auto;
+	}
+
+	.list-group-item {
+	 background-color: black;
+	 color: white;
+	}
+
+	.list-group-item:focus {
+	 background-color: white;
+	 color: red;
+	}
+}
