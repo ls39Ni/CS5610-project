@@ -1,19 +1,39 @@
 import { BsCalendar2Range } from "react-icons/bs";
+import { Link, useLocation, useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function AssignmentEditor() {
+  const params = useParams();
+  const id = params.id;
+  const course = params.cid;
+  const assignments = db.assignments;
+  let current = assignments.find((a) => a._id === id);
+  let title = "N/A";
+  let description = "N/A";
+  let points = "N/A";
+  let dueDate = "N/A";
+  let availableDate = "N/A";
+  if (current && current.title && current.description && current.points && current.due_date && current.available_date) {
+    title = current.title;
+    description = current.description;
+    points = current.points;
+    dueDate = current.due_date;
+    availableDate = current.available_date;
+  }
+  
   return (
     <div id="wd-assignments-editor" className="ms-5">
       <label htmlFor="wd-name" className="mb-2">Assignment Name</label>
-      <input id="wd-name" className="form-control" value="A1 - ENV + HTML" style={{ width: "800px" }}/>
+      <input id="wd-name" className="form-control" value={title} style={{ width: "800px" }}/>
       <br />
       <br />
       <textarea id="wd-description" className="form-control" style={{ width: "800px", height: "400px" }} >
-        The assignment is available online.                                                                                                                   Submit a link to the landing page of your Web application running on Netlify.                                                               The landing page should include the following:                                                                                                       - Your full name and section                                                                                                                                       - Links to each of the lab assignments                                                                                                                          - Link to the Kanbas application                                                                                                                                   - Links to all relevant source code repositories                                                                                                       The Kanbas application should include a link to navigate back to the landing page.</textarea>
+        {description}</textarea>
       <br />
       <div className="col">
         <div className="wd-flex-row-container">
           <label htmlFor="wd-points" className="me-3 pt-1" style={{ marginLeft: "240px" }}>Points</label>
-          <input id="wd-points" className="form-control" value={100} style={{ width: "500px" }} />
+          <input id="wd-points" className="form-control" value={points} style={{ width: "500px" }} />
         </div>
         <br />
         <div className="wd-flex-row-container">
@@ -62,14 +82,14 @@ export default function AssignmentEditor() {
               <input type="date"
                     className="form-control"
                     id="wd-due-date"
-                    value="2024-05-13"/><br/><br />
+                    value={dueDate}/><br/><br />
             <div className="wd-flex-row-container">
               <div>
                 <label htmlFor="wd-available-from"> <b>Available from</b> </label>
                 <input type="date"
                       className="form-control"
                       id="wd-available-from"
-                      value="2024-05-06"
+                      value={availableDate}
                       style={{ width: "225px" }}/>
               </div>
               <div className="ms-3">
@@ -77,7 +97,7 @@ export default function AssignmentEditor() {
                 <input type="date"
                       className="form-control"
                       id="wd-available-until"
-                      value="2024-05-20"
+                      value={dueDate}
                       style={{ width: "225px" }}/><br/>
               </div>
             </div>
@@ -87,10 +107,16 @@ export default function AssignmentEditor() {
         <div className="wd-flex-row-container float-end me-5">
           <button id="wd-add-assignment-group" className="btn btn-lg btn-secondary me-1 float-end"
               type="button" style={{ color: "black", backgroundColor: "#F5F5F5" }}>
-              Group
+              <Link key={`/Kanbas/Courses/${course}/Assignments`} to={`/Kanbas/Courses/${course}/Assignments`} 
+                style={{ color: "black", textDecoration: "none" }}>
+                Cancel
+              </Link>
           </button>
           <button id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end">
-            Assignment
+              <Link key={`/Kanbas/Courses/${course}/Assignments`} to={`/Kanbas/Courses/${course}/Assignments`} 
+                style={{ color: "white", textDecoration: "none" }}>
+                Save
+              </Link>
           </button>
         </div>
       </div>

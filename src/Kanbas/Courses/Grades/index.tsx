@@ -1,7 +1,17 @@
 import { BsFunnel, BsSearch, BsBoxArrowInRight, BsBoxArrowLeft, BsFillGearFill } from "react-icons/bs";
 import "./index.css";
+import { Link, useLocation, useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function CoursesNavigation() {
+  
+  const paramcid = useParams();
+  const cid = paramcid.id;
+  const users = db.users;
+  const enrollments = db.enrollments;
+  const assignments = db.assignments;
+  const grades = db.grades;
+
   return (
     <div>
       <div className="wd-flex-row-container float-end me-5">
@@ -50,26 +60,25 @@ export default function CoursesNavigation() {
           <div className="table-responsive">
             <table className="table table-striped">
               <tbody>
-                <tr><th>Student Name</th><td>A1 Setup<br/><span style={{ fontSize: "13px" }}>Out of 100</span></td><td>A2 HTML<br/><span style={{ fontSize: "13px" }}>Out of 100</span></td><td>A3 CSS<br/><span style={{ fontSize: "13px" }}>Out of 100</span></td><td>A4 BOOTSTRAP<br/><span style={{ fontSize: "13px" }}>Out of 100</span></td>
+                <tr><th>Student Name</th>
+                  {assignments
+                    .filter((assignment: any) => assignment.course === cid)
+                    .map((assignment: any) => (
+                      <td>{assignment.title}<br/><span style={{ fontSize: "13px" }}>Out of 100</span></td>
+                  ))}
                 </tr>
-                <tr>
-                   <th style={{ color: "#A23333" }}>Jane Adams</th><td>100%</td><td>96.67%</td><td>92.18%</td><td>66.22%</td>
-                </tr>
-                <tr>
-                   <th style={{ color: "#A23333" }}>Christina Allen</th><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                </tr>
-                <tr>
-                   <th style={{ color: "#A23333" }}>Samreen Ansari</th><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                </tr>
-                <tr>
-                   <th style={{ color: "#A23333" }}>Han Bao</th><td>100%</td><td>100%</td><td><input id="wd-value" className="form-control position-absolute ms-4 top-2" value="88.03" style={{ width: "100px", marginTop: "-19px", borderColor: "#A23333" }}/></td><td>98.99%</td>
-                </tr>
-                <tr>
-                   <th style={{ color: "#A23333" }}>Mahi Sai</th><td>100%</td><td>96.67%</td><td>98.37%</td><td>100%</td>
-                </tr>
-                <tr>
-                   <th style={{ color: "#A23333" }}>Siran Cao</th><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                </tr>
+                {enrollments
+                  .filter((enrollment: any) => enrollment.course === cid)
+                  .map((enrollment: any) => (
+                    <tr>
+                      <th style={{ color: "#A23333" }}>{enrollment.user}</th> 
+                      {grades
+                        .filter((grade: any) => enrollment.user === grade.user)
+                        .map((grade: any) => (
+                          <td>{grade.grade}</td>
+                      ))}
+                    </tr>
+                ))}
               </tbody>
             </table>
           </div>

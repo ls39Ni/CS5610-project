@@ -3,8 +3,13 @@ import { BsPlus, BsGripVertical, BsSearch, BsFileEarmarkText } from "react-icons
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
 import GreenCheckmark from "./GreenCheckmark";
+import { Link, useLocation, useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Assignments() {
+  const paramcid = useParams();
+  const cid = paramcid.id;
+  const assignments = db.assignments;
   return (
     <div id="wd-assignments" className="ms-5">
       <div className="wd-flex-row-container justify-content-between">
@@ -35,51 +40,26 @@ export default function Assignments() {
             <ModuleControlButtons />
           </div>
           <ul className="wd-assignment-list-items wd-lessons list-group rounded-0">
-            <li className="wd-assignment-list-item wd-lesson list-group-item p-3 ps-1" style={{ borderLeftWidth : "8px" , borderLeftColor : "green" }}>
-              <div className="wd-flex-row-container">
-                <BsGripVertical className="me-2 fs-3 ms-1 mt-4"/>
-                <BsFileEarmarkText size={30} className="ms-1 mt-4" style={{ float: "left", color : "green" }} />
-                  <div className="ms-5 me-5" style={{ fontSize: "19px" }} >
-                    <a className="wd-assignment-link ms-5"
-                      href="#/Kanbas/Courses/1234/Assignments/123" style={{ color: "black", textDecoration: "none" }}>
-                      <b>A1</b>
-                    </a><br />
-                    <span className="ms-5" style={{ color: "red" }}>Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am | <br />
-                    <b className="ms-5">Due</b> May 13 at 11:59pm | 100 pts
-                  </div>
-                <LessonControlButtons />
-              </div>
-            </li>
-            <li className="wd-assignment-list-item wd-lesson list-group-item p-3 ps-1" style={{ borderLeftWidth : "8px" , borderLeftColor : "green" }}>
-              <div className="wd-flex-row-container">
-                <BsGripVertical className="me-2 fs-3 ms-1 mt-4"/>
-                <BsFileEarmarkText size={30} className="ms-1 mt-4" style={{ float: "left", color : "green" }} />
-                  <div className="ms-5 me-5" style={{ fontSize: "18.65px" }} >
-                    <a className="wd-assignment-link ms-5"
-                      href="#/Kanbas/Courses/1234/Assignments/123" style={{ color: "black", textDecoration: "none" }}>
-                      <b>A2</b>
-                    </a><br />
-                    <span className="ms-5" style={{ color: "red" }}>Multiple Modules</span> | <b>Not available until</b> May 13 at 12:00am | <br />
-                    <b className="ms-5">Due</b> May 20 at 11:59pm | 100 pts
-                  </div>
-                <LessonControlButtons />
-              </div>
-            </li>
-            <li className="wd-assignment-list-item wd-lesson list-group-item p-3 ps-1" style={{ borderLeftWidth : "8px" , borderLeftColor : "green" }}>
-              <div className="wd-flex-row-container">
-                <BsGripVertical className="me-2 fs-3 ms-1 mt-4"/>
-                <BsFileEarmarkText size={30} className="ms-1 mt-4" style={{ float: "left", color : "green" }} />
-                  <div className="ms-5 me-5" style={{ fontSize: "18.55px" }} >
-                    <a className="wd-assignment-link ms-5"
-                      href="#/Kanbas/Courses/1234/Assignments/123" style={{ color: "black", textDecoration: "none" }}>
-                      <b>A3</b>
-                    </a><br />
-                    <span className="ms-5" style={{ color: "red" }}>Multiple Modules</span> | <b>Not available until</b> May 20 at 12:00am | <br />
-                    <b className="ms-5">Due</b> May 27 at 11:59pm | 100 pts
-                  </div>
-                <LessonControlButtons />
-              </div>
-            </li>
+            {assignments
+              .filter((assignment: any) => assignment.course === cid)
+              .map((assignment: any) => (
+              <li className="wd-assignment-list-item wd-lesson list-group-item p-3 ps-1" style={{ borderLeftWidth : "8px" , borderLeftColor : "green" }}>
+                <div className="wd-flex-row-container">
+                  <BsGripVertical className="me-2 fs-3 ms-1 mt-4"/>
+                  <BsFileEarmarkText size={30} className="ms-1 mt-4" style={{ float: "left", color : "green" }} />
+                    <div className="ms-5 me-5" style={{ fontSize: "19px", marginTop: "-25px" }} >
+                      <Link key={`${assignment.course}/${assignment._id}`} to={`${assignment.course}/${assignment._id}`} className="wd-assignment-link ms-5" 
+                        style={{ color: "black", textDecoration: "none" }}>
+                        <br />
+                        <b>{assignment.title}</b>
+                      </Link><br />
+                      <span style={{ color: "red" }}>Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am | <br />
+                      <b>Due</b> May 13 at 11:59pm | 100 pts
+                    </div>
+                  <LessonControlButtons />
+                </div>
+              </li>
+            ))}
           </ul>
         </li>
       </ul>
