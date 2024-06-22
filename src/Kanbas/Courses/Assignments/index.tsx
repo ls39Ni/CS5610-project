@@ -5,11 +5,18 @@ import LessonControlButtons from "./LessonControlButtons";
 import GreenCheckmark from "./GreenCheckmark";
 import { Link, useLocation, useParams } from "react-router-dom";
 import * as db from "../../Database";
+import React, { useState } from "react";
+import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
+  from "./reducer";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Assignments() {
   const paramcid = useParams();
   const cid = paramcid.id;
-  const assignments = db.assignments;
+  const [assignmentName, setAssignmentName] = useState("");
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const dispatch = useDispatch();
+
   return (
     <div id="wd-assignments" className="ms-5">
       <div className="wd-flex-row-container justify-content-between">
@@ -24,10 +31,10 @@ export default function Assignments() {
               <FaPlus className="position-relative me-2 mb-1" style={{ color: "black" }} />
               Group
           </button>
-          <button id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end">
+          <Link key={`${cid}/New`} to={`${cid}/New`} id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end pt-3" >
             <FaPlus className="position-relative me-2 mb-1" style={{ color: "#FAFAFA" }} />
             Assignment
-          </button>
+          </Link>
         </div>
       </div>
       <br />
@@ -56,7 +63,11 @@ export default function Assignments() {
                       <span style={{ color: "red" }}>Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am | <br />
                       <b>Due</b> May 13 at 11:59pm | 100 pts
                     </div>
-                  <LessonControlButtons />
+                  <LessonControlButtons 
+                    assignmentId={assignment._id}
+                    deleteAssignment={(assignmentId) => {
+                      dispatch(deleteAssignment(assignmentId));
+                    }} />
                 </div>
               </li>
             ))}

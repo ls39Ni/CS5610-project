@@ -52,7 +52,7 @@
     ]
   },
   {
-    "_id": "M103",
+    "_id": "H103",
     "name": "Nozzle Design",
     "description": "Principles of rocket nozzle design and performance optimization.",
     "course": "RS101",
@@ -78,8 +78,8 @@
     ]
   },
   {
-    "_id": "M103",
-    "name": "Nozzle Design",
+    "_id": "H104",
+    "name": "Nozzle Design 102",
     "description": "Principles of rocket nozzle design and performance optimization.",
     "course": "RS102",
     "lessons": [
@@ -104,8 +104,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M103",
+    "name": "Fuel and Combustion 102",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS103",
     "lessons": [
@@ -130,8 +130,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M104",
+    "name": "Fuel and Combustion 103",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS104",
     "lessons": [
@@ -156,8 +156,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M105",
+    "name": "Fuel and Combustion 104",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS105",
     "lessons": [
@@ -182,8 +182,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M106",
+    "name": "Fuel and Combustion 105",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS106",
     "lessons": [
@@ -208,8 +208,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M107",
+    "name": "Fuel and Combustion 106",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS107",
     "lessons": [
@@ -234,8 +234,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M108",
+    "name": "Fuel and Combustion 107",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS108",
     "lessons": [
@@ -260,8 +260,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M109",
+    "name": "Fuel and Combustion 108",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS109",
     "lessons": [
@@ -286,8 +286,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M110",
+    "name": "Fuel and Combustion 109",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS110",
     "lessons": [
@@ -312,8 +312,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M111",
+    "name": "Fuel and Combustion 110",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS111",
     "lessons": [
@@ -338,8 +338,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M112",
+    "name": "Fuel and Combustion 111",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS112",
     "lessons": [
@@ -364,8 +364,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M113",
+    "name": "Fuel and Combustion 112",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS113",
     "lessons": [
@@ -390,8 +390,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M114",
+    "name": "Fuel and Combustion 113",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS114",
     "lessons": [
@@ -416,8 +416,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M115",
+    "name": "Fuel and Combustion 114",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS115",
     "lessons": [
@@ -442,8 +442,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M116",
+    "name": "Fuel and Combustion 115",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS116",
     "lessons": [
@@ -468,8 +468,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M117",
+    "name": "Fuel and Combustion 116",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS117",
     "lessons": [
@@ -494,8 +494,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M118",
+    "name": "Fuel and Combustion 117",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS118",
     "lessons": [
@@ -520,8 +520,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M119",
+    "name": "Fuel and Combustion 118",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS119",
     "lessons": [
@@ -546,8 +546,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M120",
+    "name": "Fuel and Combustion 119",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS120",
     "lessons": [
@@ -572,8 +572,8 @@
     ]
   },
   {
-    "_id": "M102",
-    "name": "Fuel and Combustion",
+    "_id": "M121",
+    "name": "Fuel and Combustion 120",
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS121",
     "lessons": [

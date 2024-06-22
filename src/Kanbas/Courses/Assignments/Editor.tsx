@@ -1,18 +1,26 @@
 import { BsCalendar2Range } from "react-icons/bs";
 import { Link, useLocation, useParams } from "react-router-dom";
 import * as db from "../../Database";
+import React, { useState } from "react";
+import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
+  from "./reducer";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function AssignmentEditor() {
   const params = useParams();
-  const id = params.id;
+  const id = params.id === "New" ? new Date().getTime().toString() : params.id;
   const course = params.cid;
-  const assignments = db.assignments;
-  let current = assignments.find((a) => a._id === id);
-  let title = "N/A";
-  let description = "N/A";
-  let points = "N/A";
-  let dueDate = "N/A";
-  let availableDate = "N/A";
+  const [assignmentName, setAssignmentName] = useState("");
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const dispatch = useDispatch();
+
+  let current = assignments.find((a: any) => a._id === id);
+  let title = "New Assignment";
+  let description = "New Assignment Description";
+  let points = "100";
+  let dueDate = "2024-07-17";
+  let availableDate = "2024-07-01";
+
   if (current && current.title && current.description && current.points && current.due_date && current.available_date) {
     title = current.title;
     description = current.description;
@@ -21,19 +29,28 @@ export default function AssignmentEditor() {
     availableDate = current.available_date;
   }
   
+  const [newTitle, setNewTitle] = useState(title === "New Assignment" ? "New Assignment" : title);
+  const [newDescription, setNewDescription] = useState(description === "New Assignment Description" ? "New Assignment Description" : description);
+  const [newPoints, setNewPoints] = useState(points === "100" ? "100" : points);
+  const [newDueDate, setNewDueDate] = useState(dueDate === "" ? "" : dueDate);
+  const [newAvailableDate, setNewAvailableDate] = useState(availableDate === "" ? "" : availableDate);
+
   return (
     <div id="wd-assignments-editor" className="ms-5">
       <label htmlFor="wd-name" className="mb-2">Assignment Name</label>
-      <input id="wd-name" className="form-control" value={title} style={{ width: "800px" }}/>
+      <input id="wd-name" className="form-control" value={newTitle} 
+        onChange={(e) => setNewTitle(e.target.value)} style={{ width: "800px" }}/>
       <br />
       <br />
-      <textarea id="wd-description" className="form-control" style={{ width: "800px", height: "400px" }} >
-        {description}</textarea>
+      <textarea id="wd-description" className="form-control" style={{ width: "800px", height: "400px" }} 
+        onChange={(e) => setNewDescription(e.target.value)}>
+        {newDescription}</textarea>
       <br />
       <div className="col">
         <div className="wd-flex-row-container">
           <label htmlFor="wd-points" className="me-3 pt-1" style={{ marginLeft: "240px" }}>Points</label>
-          <input id="wd-points" className="form-control" value={points} style={{ width: "500px" }} />
+          <input id="wd-points" className="form-control" value={newPoints} style={{ width: "500px" }} 
+            onChange={(e) => setNewPoints(e.target.value)}/>
         </div>
         <br />
         <div className="wd-flex-row-container">
@@ -82,14 +99,16 @@ export default function AssignmentEditor() {
               <input type="date"
                     className="form-control"
                     id="wd-due-date"
-                    value={dueDate}/><br/><br />
+                    value={newDueDate}
+                    onChange={(e) => setNewDueDate(e.target.value)}/><br/><br />
             <div className="wd-flex-row-container">
               <div>
                 <label htmlFor="wd-available-from"> <b>Available from</b> </label>
                 <input type="date"
                       className="form-control"
                       id="wd-available-from"
-                      value={availableDate}
+                      value={newAvailableDate}
+                      onChange={(e) => setNewAvailableDate(e.target.value)}
                       style={{ width: "225px" }}/>
               </div>
               <div className="ms-3">
@@ -97,7 +116,8 @@ export default function AssignmentEditor() {
                 <input type="date"
                       className="form-control"
                       id="wd-available-until"
-                      value={dueDate}
+                      value={newDueDate}
+                      onChange={(e) => setNewDueDate(e.target.value)}
                       style={{ width: "225px" }}/><br/>
               </div>
             </div>
@@ -112,7 +132,7 @@ export default function AssignmentEditor() {
                 Cancel
               </Link>
           </button>
-          <button id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end">
+          <button onClick={() => params.id === "New" ? dispatch(addAssignment({ _id: id, title: newTitle, description: newDescription, points: newPoints, due_date: newDueDate, available_date: newAvailableDate, course: course })) : dispatch(updateAssignment({ _id: id, title: newTitle, description: newDescription, points: newPoints, due_date: newDueDate, available_date: newAvailableDate, course: course }))} id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end">
               <Link key={`/Kanbas/Courses/${course}/Assignments`} to={`/Kanbas/Courses/${course}/Assignments`} 
                 style={{ color: "white", textDecoration: "none" }}>
                 Save
