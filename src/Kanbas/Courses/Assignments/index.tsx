@@ -5,10 +5,11 @@ import LessonControlButtons from "./LessonControlButtons";
 import GreenCheckmark from "./GreenCheckmark";
 import { Link, useLocation, useParams } from "react-router-dom";
 import * as db from "../../Database";
-import React, { useState } from "react";
-import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
+import React, { useState, useEffect } from "react";
+import { addAssignment, editAssignment, updateAssignment, deleteAssignment, setAssignments }
   from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
+import * as client from "./client";
 
 export default function Assignments() {
   const paramcid = useParams();
@@ -16,7 +17,21 @@ export default function Assignments() {
   const [assignmentName, setAssignmentName] = useState("");
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const dispatch = useDispatch();
-
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+  const createAssignment = async (assignment: any) => {
+    const newAssignment = await client.createAssignment(cid as string, assignment);
+    dispatch(addAssignment(newAssignment));
+  };
+  const removeAssignment = async (moduleId: string) => {
+    await client.deleteAssignment(moduleId);
+    dispatch(deleteAssignment(moduleId));
+  };
   return (
     <div id="wd-assignments" className="ms-5">
       <div className="wd-flex-row-container justify-content-between">
@@ -66,7 +81,7 @@ export default function Assignments() {
                   <LessonControlButtons 
                     assignmentId={assignment._id}
                     deleteAssignment={(assignmentId) => {
-                      dispatch(deleteAssignment(assignmentId));
+                      removeAssignment(assignmentId);
                     }} />
                 </div>
               </li>

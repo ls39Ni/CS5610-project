@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
   from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
   const params = useParams();
@@ -34,6 +35,16 @@ export default function AssignmentEditor() {
   const [newPoints, setNewPoints] = useState(points === "100" ? "100" : points);
   const [newDueDate, setNewDueDate] = useState(dueDate === "" ? "" : dueDate);
   const [newAvailableDate, setNewAvailableDate] = useState(availableDate === "" ? "" : availableDate);
+
+  const createAssignment = async (assignment: any) => {
+    const newAssignment = await client.createAssignment(course as string, assignment);
+    dispatch(addAssignment(newAssignment));
+  };
+
+  const saveAssignment = async (assignment: any) => {
+    const status = await client.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  };
 
   return (
     <div id="wd-assignments-editor" className="ms-5">
@@ -132,7 +143,7 @@ export default function AssignmentEditor() {
                 Cancel
               </Link>
           </button>
-          <button onClick={() => params.id === "New" ? dispatch(addAssignment({ _id: id, title: newTitle, description: newDescription, points: newPoints, due_date: newDueDate, available_date: newAvailableDate, course: course })) : dispatch(updateAssignment({ _id: id, title: newTitle, description: newDescription, points: newPoints, due_date: newDueDate, available_date: newAvailableDate, course: course }))} id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end">
+          <button onClick={() => params.id === "New" ? createAssignment({ _id: id, title: newTitle, description: newDescription, points: newPoints, due_date: newDueDate, available_date: newAvailableDate, course: course }) : saveAssignment({ _id: id, title: newTitle, description: newDescription, points: newPoints, due_date: newDueDate, available_date: newAvailableDate, course: course })} id="wd-add-assignment" className="btn btn-lg btn-danger me-5 float-end">
               <Link key={`/Kanbas/Courses/${course}/Assignments`} to={`/Kanbas/Courses/${course}/Assignments`} 
                 style={{ color: "white", textDecoration: "none" }}>
                 Save
