@@ -1,5 +1,5 @@
 import axios from "axios";
-const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
+const REMOTE_SERVER = "https://kanbas-node-server-app-a6-vr8z.onrender.com";
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 export const updateCourse = async (course: any) => {
   const response = await axios.put(`${COURSES_API}/${course.id}`, course);

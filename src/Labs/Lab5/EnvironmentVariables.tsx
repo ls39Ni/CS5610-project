@@ -1,4 +1,4 @@
-const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
+const REMOTE_SERVER = "https://kanbas-node-server-app-a6-vr8z.onrender.com";
 export default function EnvironmentVariables() {
   return (
     <div id="wd-environment-variables">
