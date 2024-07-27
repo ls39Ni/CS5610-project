@@ -32,6 +32,7 @@ export default function Assignments() {
     await client.deleteAssignment(moduleId);
     dispatch(deleteAssignment(moduleId));
   };
+  
   return (
     <div id="wd-assignments" className="ms-5">
       <div className="wd-flex-row-container justify-content-between">
