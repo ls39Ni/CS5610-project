@@ -26,6 +26,11 @@ export default function TOC() {
           My Render
         </a>
       </li>
+      <li className="nav-item">
+        <a id="wd-quiz-questions" href="#/QuizQuestionsEditor" className="nav-link">
+          Quiz Questions Editor
+        </a>
+      </li>
     </ul>
   );
 }
